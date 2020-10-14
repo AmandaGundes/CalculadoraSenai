@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void onClickBotao1(View v) {
         atualizarNumeroDigitado("1");
         atualizarDisplay("1");
@@ -78,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
     public void onClickBotao9(View v) {
         atualizarNumeroDigitado("9");
         atualizarDisplay("9");
+    }
+
+    public void onClickBotao10(View v) {
+        atualizarNumeroDigitado("0");
+        atualizarDisplay("0");
     }
 
     public void onClickAdicao(View v) {
@@ -127,19 +133,26 @@ public class MainActivity extends AppCompatActivity {
                 int resultado = numero1 - numero2;
                 display.setText(String.valueOf(resultado));
             } if (operacao.equals("*")) {
-                if (numero2 == 0) {
-                    int resultado = numero1 * numero2;
-                    display.setText(String.valueOf(resultado));
-                } else {
-                    Toast.makeText(MainActivity.this, "Não é possível dividir por 0", Toast.LENGTH_LONG).show();
-                }
-            } if (operacao.equals("/")) {
-                int resultado = numero1 / numero2;
+                int resultado = numero1 * numero2;
                 display.setText(String.valueOf(resultado));
-            } else {
-                Toast.makeText(MainActivity.this, "Nenhuma operação foi solicitada", Toast.LENGTH_LONG).show();
+            } if (operacao.equals("/")) {
+                if (numero2 == 0) {
+                    Toast.makeText(MainActivity.this, "Não é possível dividir por 0", Toast.LENGTH_LONG).show();
+                } else {
+                    int resultado = numero1 / numero2;
+                    display.setText(String.valueOf(resultado));
+                }
             }
+        } else {
+            Toast.makeText(MainActivity.this, "Nenhuma operação foi solicitada", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void onClickLimpar(View v) {
+        display.setText("");
+        primeiroNumero = "";
+        segundoNumero = "";
+        operacao = "";
     }
 
 }
